@@ -1,0 +1,42 @@
+1.配置Git
+在本地创建ssh key；
+ssh-keygen -t rsa -C "13537125493@163.com"
+
+ssh -T git@github.com
+
+设置username和email，因为github每次commit都会记录他们。
+git config --global user.name Tartarus0220
+git config --global user.email "13537125493@163.com"
+
+添加远程地址
+git remote add origin git@github.com:Tartarus0220/data_training.git
+git remote set-url origin https://github.com/Tartarus0220/data_training.git
+加完之后进入.git，打开config，这里会多出一个remote "origin"内容，这就是刚才添加的远程地址，也可以直接修改config来配置远程地址
+
+Git远程仓库地址变更本地如何修改
+方法一 通过命令直接修改远程地址
+进入git_test根目录
+git remote 查看所有远程仓库， git remote xxx 查看指定远程仓库地址
+git remote set-url origin http://192.168.100.235:9797/john/git_test.git
+方法二 通过命令先删除再添加远程仓库
+进入git_test根目录
+git remote 查看所有远程仓库， git remote xxx 查看指定远程仓库地址
+git remote rm origin
+git remote add origin http://192.168.100.235:9797/john/git_test.git
+方法三 直接修改配置文件
+进入git_test/.git
+vim config
+修改 [remote “origin”]下面的url即可
+
+git add 命令可将该文件的修改添加到暂存区,告诉 Git 哪些文件的修改应该包含在下一次提交（commit）中
+git add read.txt git.txt
+添加指定目录到暂存区，包括子目录：
+git add [dir]
+添加当前目录下的所有文件到暂存区：
+git add .
+AM 状态的意思是这个文件在我们将它添加到缓存之后又有改动。改动后我们再执行 git add . 命令将其添加到缓,一般都需要进行 git add 操作，从而保存历史版本
+
+查看项目的当前状态:
+git status
+git commit -m "提交说明"
+git push -u origin master
